@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ButtonWithModal from "../../../components/ui/button-with-modal";
-import { InvoiceForm } from "./_components/invoice.form";
+import { InvoiceForm } from "./_components/invoice-form/invoice.form";
 import PlusIcon from "../../../components/icons/plus-icon";
 import InvoicesTable from "./_components/invoice-table/invoice.table";
 import { ToastContainer } from "../../../components/ui/toast-container";

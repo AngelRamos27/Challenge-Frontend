@@ -1,15 +1,15 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { createInvoiceSchema } from "../../../../features/accountingDepartment/invoices/invoices.schemas";
-import type { Invoice } from "../../../../features/accountingDepartment/invoices/invoices.models";
+import { createInvoiceSchema } from "../../../../../features/accountingDepartment/invoices/invoices.schemas";
+import type { Invoice } from "../../../../../features/accountingDepartment/invoices/invoices.models";
 import {
   useInvoiceFormStore,
   useInvoiceStore,
-} from "../../../../store/invoices/invoices.store";
-import { generateInvoiceNumber } from "../../../../utils/Invoices.utils";
-import { useToastStore } from "../../../../store/toast/toast.store";
-import { INVOICES_MESSAGES } from "../../../../features/accountingDepartment/invoices/invoices.messages";
+} from "../../../../../store/invoices/invoices.store";
+import { generateInvoiceNumber } from "../../../../../utils/Invoices.utils";
+import { useToastStore } from "../../../../../store/toast/toast.store";
+import { INVOICES_MESSAGES } from "../../../../../features/accountingDepartment/invoices/invoices.messages";
 import { CButton } from "@coreui/react";
-import { useInvoiceModalStore } from "../../../../store/modal/modal.store";
+import { useInvoiceModalStore } from "../../../../../store/modal/modal.store";
 
 interface InvoiceFormProps {
   id?: string;
