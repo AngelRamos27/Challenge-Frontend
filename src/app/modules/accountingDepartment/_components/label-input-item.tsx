@@ -10,7 +10,9 @@ const LabelInputItem = ({
 }) => {
   return (
     <div className="w-full flex flex-col gap-2 h-auto">
-      <TitleLabel text={text} size="md:text-lg text-md font-semibold" />
+      <div className="w-full flex items-start">
+        <TitleLabel text={text} size="md:text-lg text-md font-semibold" />
+      </div>
       {children}
     </div>
   );

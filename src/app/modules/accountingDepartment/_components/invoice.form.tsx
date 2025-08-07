@@ -5,18 +5,21 @@ import {
   useInvoiceFormStore,
   useInvoiceStore,
 } from "../../../../store/invoices/invoices.store";
-import { generateInvoiceNumber } from "../../../../utils/mockInvoices";
+import { generateInvoiceNumber } from "../../../../utils/Invoices.utils";
 import { useToastStore } from "../../../../store/toast/toast.store";
 import { INVOICES_MESSAGES } from "../../../../features/accountingDepartment/invoices/invoices.messages";
+import { CButton } from "@coreui/react";
+import { useInvoiceModalStore } from "../../../../store/modal/modal.store";
 
 interface InvoiceFormProps {
-  onClose: () => void;
+  id?: string;
 }
 
-export const InvoiceForm = ({ onClose }: InvoiceFormProps) => {
+export const InvoiceForm = ({ id }: InvoiceFormProps) => {
   const { invoice, resetInvoice } = useInvoiceFormStore();
   const { addInvoice } = useInvoiceStore();
   const { showToast } = useToastStore();
+  const { closeInvoiceModal } = useInvoiceModalStore();
 
   return (
     <Formik<Invoice>
@@ -34,7 +37,7 @@ export const InvoiceForm = ({ onClose }: InvoiceFormProps) => {
           addInvoice(invoiceWithNumber);
           actions.setSubmitting(false);
           resetInvoice();
-          onClose();
+          closeInvoiceModal();
           showToast(
             INVOICES_MESSAGES.CREATED_OK(invoiceWithNumber.invoiceNumber),
             "success"
@@ -97,13 +100,14 @@ export const InvoiceForm = ({ onClose }: InvoiceFormProps) => {
           </div>
 
           <div className="flex justify-end gap-2 pt-4">
-            <button
+            <CButton
+              color="dark"
               type="submit"
               disabled={isSubmitting}
-              className="bg-blue-600 text-white px-4 py-2 rounded"
+              className="px-4 py-2"
             >
-              Submit
-            </button>
+              {id ? "Save" : "Submit"}
+            </CButton>
           </div>
         </Form>
       )}

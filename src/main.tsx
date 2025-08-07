@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import '@coreui/coreui/dist/css/coreui.min.css';
 import App from './app/App.tsx'
-
+import './app/App.css'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App />

@@ -2,21 +2,20 @@ import { useState } from "react";
 import ButtonWithModal from "../../../components/ui/button-with-modal";
 import { InvoiceForm } from "./_components/invoice.form";
 import PlusIcon from "../../../components/icons/plus-icon";
-import InvoicesTable from "./_components/invoice.table";
+import InvoicesTable from "./_components/invoice-table/invoice.table";
 import { ToastContainer } from "../../../components/ui/toast-container";
 import HeaderModules from "../../../components/ui/header-modules";
 
 const AccountingDepartmentPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <div className="w-full h-screen flex flex-col md:p-5 p-3 items-center justify-start">
+    <div className="w-full h-screen gap-5 flex flex-col md:p-5 p-3 items-center justify-start">
       <HeaderModules>
         <ButtonWithModal
           modalTitle="New Invoice"
-          modalContent={<InvoiceForm onClose={() => setIsModalOpen(false)} />}
+          modalContent={<InvoiceForm />}
           isOpen={isModalOpen}
           onClose={closeModal}
         >

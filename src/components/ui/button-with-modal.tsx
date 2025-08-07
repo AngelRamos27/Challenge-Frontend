@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import {
   CButton,
   CModal,
@@ -6,12 +6,13 @@ import {
   CModalTitle,
   CModalBody,
 } from "@coreui/react";
+import { useInvoiceModalStore } from "../../store/modal/modal.store";
 
 type Props = {
   children: ReactNode;
   modalTitle?: string;
   modalContent?: ReactNode;
-    isOpen: boolean;
+  isOpen: boolean;
   onClose: () => void;
 };
 
@@ -20,25 +21,23 @@ const ButtonWithModal = ({
   modalTitle = "Modal",
   modalContent,
 }: Props) => {
-  const [visible, setVisible] = useState(false);
-
-  const openModal = () => setVisible(true);
-  const closeModal = () => setVisible(false);
+  const { isInvoiceModalOpen, openInvoiceModal, closeInvoiceModal } =
+    useInvoiceModalStore();
 
   return (
     <>
       <CButton
         color="dark"
         className="w-auto lg:w-full "
-        onClick={openModal}
+        onClick={openInvoiceModal}
       >
         {children}
       </CButton>
 
       <CModal
         className="w-2/3 md:w-full"
-        visible={visible}
-        onClose={closeModal}
+        visible={isInvoiceModalOpen}
+        onClose={closeInvoiceModal}
       >
         <CModalHeader>
           <CModalTitle>{modalTitle}</CModalTitle>

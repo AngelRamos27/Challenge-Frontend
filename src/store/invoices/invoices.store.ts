@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { mockInvoices } from "../../utils/mockInvoices";
+import { mockInvoices } from "../../utils/Invoices.utils";
 import type {
   Invoice,
   InvoiceStatusFilter,

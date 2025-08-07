@@ -5,7 +5,9 @@ export const createInvoiceSchema = Yup.object().shape({
   clientName: Yup.string()
     .matches(NAME_REGEX, "Please enter a valid client name")
     .required("Required"),
-  date: Yup.date().required("Required"),
+  date: Yup.date()
+    .typeError("Please select a valid date")
+    .required("Date is required"),
   amount: Yup.number()
     .required("Required")
     .positive("Must be a positive number")
