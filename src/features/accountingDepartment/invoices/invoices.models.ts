@@ -5,12 +5,16 @@ import type {
 } from "./invoices.schemas";
 
 export interface Invoice {
+  id?: string;
   invoiceNumber?: string;
   clientName: string;
   date: Date;
   amount: number;
-  status: boolean;
+  status: InvoiceStatus | "";
 }
+
+export type InvoiceStatus = "PAID" | "UNPAID";
+export type InvoiceStatusFilter = "ALL" | InvoiceStatus;
 
 export type CreateInvoicePayload = InferType<typeof createInvoiceSchema>;
 export type UpdateInvoicePayload = InferType<typeof updateInvoiceSchema>;

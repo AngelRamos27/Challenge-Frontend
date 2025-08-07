@@ -10,11 +10,11 @@ export const createInvoiceSchema = Yup.object().shape({
     .required("Required")
     .positive("Must be a positive number")
     .min(1, "Must be at least 1"),
-  status: Yup.boolean().required("Required"),
+  status: Yup.string().required("Required"),
 });
 
 export const updateInvoiceSchema = Yup.object()
   .shape({
-    invoiceNumber: Yup.string().optional(),
+    invoiceId: Yup.string(),
   })
   .concat(createInvoiceSchema);
