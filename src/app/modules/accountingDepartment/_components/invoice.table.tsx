@@ -13,18 +13,30 @@ import TitleLabel from "../../../../components/ui/title-label";
 import InvoiceFilters from "./invoice.filters";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
-
+const headerClassStyle = "bg-gray-200 font-semibold";
+const cellClassStyle = "hover:bg-gray-200";
 const colDefs: ColDef<Invoice>[] = [
   {
     field: "invoiceNumber",
     headerName: "Invoice Number",
+    headerClass: headerClassStyle,
+    cellClass: cellClassStyle,
     filter: true,
     flex: 1,
   },
-  { field: "clientName", headerName: "Client Name", filter: true, flex: 1 },
+  {
+    field: "clientName",
+    headerName: "Client Name",
+    headerClass: headerClassStyle,
+    cellClass: cellClassStyle,
+    filter: true,
+    flex: 1,
+  },
   {
     field: "date",
     headerName: "Date",
+    headerClass: headerClassStyle,
+    cellClass: cellClassStyle,
     filter: true,
     valueFormatter: (params: ValueFormatterParams<Invoice>) => {
       const date =
@@ -35,12 +47,19 @@ const colDefs: ColDef<Invoice>[] = [
   {
     field: "status",
     headerName: "Status",
+    headerClass: headerClassStyle,
     filter: true,
     comparator: (a, b) => (a === "PAID" ? 1 : 0) - (b === "PAID" ? 1 : 0),
+    cellClass: (params) =>
+      params.value === "PAID"
+        ? "text-green-600 font-semibold hover:bg-gray-200"
+        : "text-red-500 font-semibold hover:bg-gray-200",
   },
   {
     field: "amount",
-    headerName: "Amount",
+    headerName: "Amount (USD)",
+    headerClass: headerClassStyle,
+    cellClass: cellClassStyle,
     filter: true,
     valueFormatter: (params: ValueFormatterParams<Invoice>) =>
       `$${params.value.toFixed(2)}`,
@@ -59,7 +78,8 @@ const InvoicesTable = () => {
           rowData={filteredData}
           columnDefs={colDefs}
           pagination
-          paginationPageSize={10}
+          paginationPageSize={20}
+          rowHeight={40}
           getRowId={(params) => params.data?.id?.toString() ?? ""}
           modules={[AllCommunityModule]}
         />

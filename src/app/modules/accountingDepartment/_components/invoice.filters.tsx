@@ -1,5 +1,5 @@
+import { useInvoiceStore } from "../../../../store/invoices/invoices.store";
 import type { InvoiceStatusFilter } from "../../../../features/accountingDepartment/invoices/invoices.models";
-import { useInvoiceStore } from "../../../../features/accountingDepartment/invoices/invoices.store";
 import LabelInputItem from "./label-input-item";
 
 const InvoiceFilters = () => {

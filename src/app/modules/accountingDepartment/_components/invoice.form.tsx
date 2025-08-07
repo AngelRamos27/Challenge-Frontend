@@ -1,32 +1,55 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { createInvoiceSchema } from "../../../../features/accountingDepartment/invoices/invoices.schemas";
 import type { Invoice } from "../../../../features/accountingDepartment/invoices/invoices.models";
+import {
+  useInvoiceFormStore,
+  useInvoiceStore,
+} from "../../../../store/invoices/invoices.store";
+import { generateInvoiceNumber } from "../../../../utils/mockInvoices";
+import { useToastStore } from "../../../../store/toast/toast.store";
+import { INVOICES_MESSAGES } from "../../../../features/accountingDepartment/invoices/invoices.messages";
 
 interface InvoiceFormProps {
-  onSubmit?: (values: Invoice) => void;
   onClose: () => void;
 }
 
-export const InvoiceForm = ({ onSubmit, onClose }: InvoiceFormProps) => {
+export const InvoiceForm = ({ onClose }: InvoiceFormProps) => {
+  const { invoice, resetInvoice } = useInvoiceFormStore();
+  const { addInvoice } = useInvoiceStore();
+  const { showToast } = useToastStore();
+
   return (
     <Formik<Invoice>
-      initialValues={{
-        clientName: "",
-        date: new Date(""),
-        amount: 0,
-        status: "",
-      }}
+      initialValues={invoice}
+      enableReinitialize
       validationSchema={createInvoiceSchema}
       onSubmit={(values, actions) => {
-        onSubmit(values);
-        actions.setSubmitting(false);
-        onClose();
+        try {
+          const invoiceWithNumber = {
+            ...values,
+            invoiceNumber: generateInvoiceNumber(),
+            id: crypto.randomUUID(),
+          };
+
+          addInvoice(invoiceWithNumber);
+          actions.setSubmitting(false);
+          resetInvoice();
+          onClose();
+          showToast(
+            INVOICES_MESSAGES.CREATED_OK(invoiceWithNumber.invoiceNumber),
+            "success"
+          );
+        } catch (error) {
+          console.error("Error creating invoice:", error);
+          showToast(INVOICES_MESSAGES.CREATED_ERR, "error");
+          actions.setSubmitting(false);
+        }
       }}
     >
       {({ isSubmitting }) => (
-        <Form className="flex flex-col gap-4 w-full  p-2">
-          <div className="flex  flex-col gap-2">
-            <label className="block mb-1 font-bold">Client Name</label>
+        <Form className="flex flex-col gap-4 w-full p-2">
+          <div className="flex flex-col gap-2">
+            <label className="font-bold">Client Name</label>
             <Field
               name="clientName"
               className="border p-2 rounded"
@@ -39,8 +62,8 @@ export const InvoiceForm = ({ onSubmit, onClose }: InvoiceFormProps) => {
             />
           </div>
 
-          <div className="flex  flex-col gap-2">
-            <label className="block mb-1 font-bold">Date</label>
+          <div className="flex flex-col gap-2">
+            <label className="font-bold">Date</label>
             <Field name="date" type="date" className="border p-2 rounded" />
             <ErrorMessage
               name="date"
@@ -49,8 +72,8 @@ export const InvoiceForm = ({ onSubmit, onClose }: InvoiceFormProps) => {
             />
           </div>
 
-          <div className="flex  flex-col gap-2">
-            <label className="block mb-1 font-bold">Amount</label>
+          <div className="flex flex-col gap-2">
+            <label className="font-bold">Amount</label>
             <Field name="amount" type="number" className="border p-2 rounded" />
             <ErrorMessage
               name="amount"
@@ -59,11 +82,12 @@ export const InvoiceForm = ({ onSubmit, onClose }: InvoiceFormProps) => {
             />
           </div>
 
-          <div className="flex  flex-col gap-2">
-            <label className="block mb-1 font-bold">Status</label>
-            <Field as="select" name="status" className="border p-2  rounded">
-              <option value="Paid">Paid</option>
-              <option value="Unpaid">Unpaid</option>
+          <div className="flex flex-col gap-2">
+            <label className="font-bold">Status</label>
+            <Field as="select" name="status" className="border p-2 rounded">
+              <option value="">Select status</option>
+              <option value="PAID">Paid</option>
+              <option value="UNPAID">Unpaid</option>
             </Field>
             <ErrorMessage
               name="status"
@@ -73,13 +97,6 @@ export const InvoiceForm = ({ onSubmit, onClose }: InvoiceFormProps) => {
           </div>
 
           <div className="flex justify-end gap-2 pt-4">
-            <button
-              type="button"
-              onClick={onClose}
-              className="bg-gray-300 px-4 py-2 rounded"
-            >
-              Cancel
-            </button>
             <button
               type="submit"
               disabled={isSubmitting}

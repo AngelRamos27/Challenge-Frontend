@@ -26,3 +26,9 @@ export const mockInvoices: Invoice[] = [
     amount: 540,
   },
 ];
+
+export const generateInvoiceNumber = (): string => {
+  const prefix = "INV";
+  const randomPart = Math.floor(100000 + Math.random() * 900000); 
+  return `${prefix}-${randomPart}`;
+};

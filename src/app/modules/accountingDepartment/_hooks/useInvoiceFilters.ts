@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useInvoiceStore } from "../../../../features/accountingDepartment/invoices/invoices.store";
+import { useInvoiceStore } from "../../../../store/invoices/invoices.store";
 
 export const useInvoiceFilters = () => {
   const {
