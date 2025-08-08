@@ -22,7 +22,8 @@ interface InvoiceFormState {
   resetInvoice: () => void;
 }
 
-export const useInvoiceStore = create<InvoiceState>((set) => ({ //global state to manage Invoices and filters
+export const useInvoiceStore = create<InvoiceState>((set) => ({
+  //global state to manage Invoices and filters
   rowData: mockInvoices,
   statusFilter: "ALL",
   dateFrom: "",
@@ -36,11 +37,12 @@ export const useInvoiceStore = create<InvoiceState>((set) => ({ //global state t
     })),
 }));
 
-export const useInvoiceFormStore = create<InvoiceFormState>((set) => ({ //global state to manage creations of new Invoices
+export const useInvoiceFormStore = create<InvoiceFormState>((set) => ({
+  //global state to manage creations of new Invoices
   invoice: {
     clientName: "",
-    date: new Date(""),
-    amount: 0,
+    date: "",
+    amount: "",
     status: "",
   },
   setInvoice: (invoice) => set({ invoice }),
@@ -48,12 +50,9 @@ export const useInvoiceFormStore = create<InvoiceFormState>((set) => ({ //global
     set({
       invoice: {
         clientName: "",
-        date: new Date(""),
-        amount: 0,
+        date: "",
+        amount: "",
         status: "",
       },
     }),
 }));
-
-
-

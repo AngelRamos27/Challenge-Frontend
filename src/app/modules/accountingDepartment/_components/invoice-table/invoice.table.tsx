@@ -23,7 +23,7 @@ const InvoicesTable = () => {
           columnDefs={colDefs}
           pagination
           paginationPageSize={20}
-          rowHeight={40}
+          rowHeight={50}
           getRowId={(params) => params.data?.id?.toString() ?? ""}
           modules={[AllCommunityModule]}
         />

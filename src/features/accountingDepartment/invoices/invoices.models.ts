@@ -3,8 +3,8 @@ export interface Invoice {
   id?: string;
   invoiceNumber?: string;
   clientName: string;
-  date: Date;
-  amount: number;
+  date: Date | "";
+  amount: number | "";
   status: InvoiceStatus | "";
 }
 

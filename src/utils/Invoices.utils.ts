@@ -37,8 +37,8 @@ export const generateInvoiceNumber = (): string => {
   return `${prefix}-${randomPart}`;
 };
 
-const headerClassStyle = "bg-gray-200 font-semibold lg:text-md text-md";
-const cellClassStyle = "hover:bg-gray-200 lg:text-md text-md";
+const headerClassStyle = "bg-gray-200 font-semibold lg:text-md text-md w-full";
+const cellClassStyle = "hover:bg-gray-200 lg:text-md text-md w-full";
 export const colDefs: ColDef<Invoice>[] = [
   {
     field: "invoiceNumber",
@@ -53,7 +53,7 @@ export const colDefs: ColDef<Invoice>[] = [
   {
     field: "clientName",
     headerName: "Client Name",
-    minWidth: 150,
+    minWidth: 400,
     headerClass: headerClassStyle,
     cellClass: cellClassStyle,
     filter: true,

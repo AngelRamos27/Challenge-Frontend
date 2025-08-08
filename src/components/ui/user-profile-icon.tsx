@@ -7,7 +7,7 @@ export const UserCellIcon = (props: { value: string }) => {
       <CAvatar color="secondary" textColor="white">
         <PersonIcon className="w-5 h-5" />
       </CAvatar>
-      {props.value ?? ""}
+      {props.value ?? "No name provided"}
     </div>
   );
 };
