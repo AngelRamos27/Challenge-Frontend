@@ -35,7 +35,7 @@ const ButtonWithModal = ({
       </CButton>
 
       <CModal
-        className="w-2/3 md:w-full"
+        className="w-2/3 md:w-full lg:pt-2 pt-14"
         visible={isInvoiceModalOpen}
         onClose={closeInvoiceModal}
       >
