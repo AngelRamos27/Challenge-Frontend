@@ -33,7 +33,7 @@ const InvoiceFilters = () => {
           type="date"
           value={dateFrom}
           onChange={(e) => setDateFrom(e.target.value)}
-          className="border p-2 rounded"
+          className="border w-full p-2 rounded"
         />
       </LabelInputItem>
       <LabelInputItem text="To">
@@ -41,7 +41,7 @@ const InvoiceFilters = () => {
           type="date"
           value={dateTo}
           onChange={(e) => setDateTo(e.target.value)}
-          className="border p-2 rounded"
+          className="border w-full p-2 rounded"
         />
       </LabelInputItem>
     </div>

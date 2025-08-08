@@ -67,7 +67,7 @@ export const InvoiceForm = ({ id }: InvoiceFormProps) => {
 
           <div className="flex flex-col gap-2">
             <label className="font-bold">Date</label>
-            <Field name="date" type="date" className="border p-2 rounded" />
+            <Field name="date" type="date" className="border w-full p-2 rounded" />
             <ErrorMessage
               name="date"
               component="div"

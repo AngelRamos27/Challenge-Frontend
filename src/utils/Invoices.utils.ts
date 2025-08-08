@@ -37,8 +37,8 @@ export const generateInvoiceNumber = (): string => {
   return `${prefix}-${randomPart}`;
 };
 
-const headerClassStyle = "bg-gray-200 font-semibold";
-const cellClassStyle = "hover:bg-gray-200";
+const headerClassStyle = "bg-gray-200 font-semibold lg:text-lg text-md";
+const cellClassStyle = "hover:bg-gray-200 lg:text-lg text-md";
 export const colDefs: ColDef<Invoice>[] = [
   {
     field: "invoiceNumber",
