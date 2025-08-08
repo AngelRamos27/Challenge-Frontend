@@ -12,7 +12,7 @@ const AccountingDepartmentPage = () => {
 
   return (
     <div className="w-full h-screen gap-5 flex flex-col md:p-5 p-3 items-center justify-start">
-      <HeaderModules>
+      <HeaderModules text="Accounting Department">
         <ButtonWithModal
           modalTitle="New Invoice"
           modalContent={<InvoiceForm />}

@@ -14,7 +14,7 @@ const InvoicesTable = () => {
   const { filteredData } = useInvoiceFilters();
   return (
     <div className="ag-theme-quartz h-screen w-full flex flex-col gap-2">
-      <TitleLabel size="text-xl md:text-3xl pb-4" text="Invoices table" />
+      <TitleLabel size="text-xl md:text-3xl text-center pb-4" text="Invoices table" />
       <div className="w-full h-screen flex flex-col gap-4">
         <InvoiceFilters />
         <CSVImporter />

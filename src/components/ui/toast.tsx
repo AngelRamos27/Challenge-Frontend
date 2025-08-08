@@ -12,7 +12,7 @@ export const Toast = ({ message, type, onClose }: ToastProps) => {
     <CToast
       animation={true}
       autohide={true}
-      delay={9000}
+      delay={4000}
       visible={true}
       onClose={onClose}
     >
