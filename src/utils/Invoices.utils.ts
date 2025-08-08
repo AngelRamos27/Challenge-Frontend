@@ -80,7 +80,9 @@ export const colDefs: ColDef<Invoice>[] = [
     cellClass: (params) =>
       params.value === "PAID"
         ? "hover:bg-green-500 hover:opacity-80 transition duration-200 "
-        : "hover:bg-red-500 duration-200 transition hover:opacity-80",
+        : params.value === "UNPAID"
+        ? "hover:bg-red-500 duration-200 transition hover:opacity-80"
+        : "hover:bg-gray-200 duration-200 ",
   },
   {
     field: "amount",
@@ -95,13 +97,13 @@ export const colDefs: ColDef<Invoice>[] = [
   },
 ];
 
-export const invoiceSchema = {
-  type: "Invoices",
-  fields: [
-    { label: "Invoice Number", key: "invoiceNumber", type: "string" },
-    { label: "Client Name", key: "clientName", type: "string" },
-    { label: "Date", key: "date", type: "date" },
-    { label: "Status", key: "status", type: "string" },
-    { label: "Amount", key: "amount", type: "number" },
-  ],
-};
+// export const invoiceSchema = {
+//   type: "Invoices",
+//   fields: [
+//     { label: "Invoice Number", key: "invoiceNumber", type: "string" },
+//     { label: "Client Name", key: "clientName", type: "string" },
+//     { label: "Date", key: "date", type: "date" },
+//     { label: "Status", key: "status", type: "string" },
+//     { label: "Amount", key: "amount", type: "number" },
+//   ],
+// };

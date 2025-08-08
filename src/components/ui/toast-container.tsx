@@ -6,7 +6,7 @@ export const ToastContainer = () => {
 
   if (!isVisible) return null;
   return (
-    <div className="fixed top-0 right-0 p-2 z-[1000000] ">
+    <div className="fixed bottom-0 right-0 p-3 z-[1000000] ">
       <Toast message={message} type={type} onClose={hideToast} />
     </div>
   );

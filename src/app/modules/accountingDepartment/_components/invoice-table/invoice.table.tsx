@@ -6,6 +6,7 @@ import { useInvoiceFilters } from "../../_hooks/useInvoiceFilters";
 import TitleLabel from "../../../../../components/ui/title-label";
 import InvoiceFilters from "../invoice.filters";
 import { colDefs } from "../../../../../utils/Invoices.utils";
+import CSVImporter from "../csv.importer";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -16,6 +17,7 @@ const InvoicesTable = () => {
       <TitleLabel size="text-xl md:text-3xl pb-4" text="Invoices table" />
       <div className="w-full h-screen flex flex-col gap-4">
         <InvoiceFilters />
+        <CSVImporter />
         <AgGridReact
           rowData={filteredData}
           columnDefs={colDefs}

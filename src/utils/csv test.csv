@@ -1,0 +1,3 @@
+invoiceNumber,clientName,date,status,amount
+INV001,Angel Ramos,2025-08-01,PAID,1200
+INV002,Luis Flores,2025-08-03,UNPAID,890
